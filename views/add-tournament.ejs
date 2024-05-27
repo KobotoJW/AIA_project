@@ -1,0 +1,11 @@
+<form action="/tournaments/add" method="post">
+    <input type="text" name="name" placeholder="Tournament Name" required>
+    <input type="text" name="discipline" placeholder="Discipline" required>
+    <input type="number" name="maxParticipants" placeholder="Max Participants" required>
+    <label for="time">Time:</label>
+    <input type="datetime-local" id="time" name="time" required>
+    <label for="deadline">Application Deadline:</label>
+    <input type="datetime-local" id="deadline" name="applicationDeadline" required>
+    <input type="text" name="location" placeholder="Location" required>
+    <button type="submit">Add Tournament</button>
+</form>

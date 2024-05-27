@@ -5,35 +5,44 @@ const nodemailer = require('nodemailer');
 const User = require('../models/User');
 
 const router = express.Router();
-const app = express();
+
+router.get('/', (req, res) => {
+    res.render('login');
+});
+
+router.get('/register', (req, res) => {
+    res.render('register');
+});
+
+router.get('/forgot-password', (req, res) => {
+    res.render('forgot-password');
+});
 
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
         return res.status(400).json({ message: 'Invalid email or password' });
     }
 
-    // Check if the password is correct
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
         return res.status(400).json({ message: 'Invalid email or password' });
     }
 
-    // Check if the user has confirmed their email
     if (!user.isConfirmed) {
         return res.status(400).json({ message: 'Please confirm your email' });
     }
 
-    res.json({ message: 'Logged in successfully' });
+    req.session.userId = user._id;
+    req.session.user = user;
+    res.redirect('/tournaments');
 });
 
 router.post('/forgot-password', async (req, res) => {
     const { email } = req.body;
 
-    // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
         return res.status(400).json({ message: 'User not found' });
@@ -41,13 +50,11 @@ router.post('/forgot-password', async (req, res) => {
         return res.status(400).json({ message: 'Please confirm your email' });
     }
 
-    // Generate a reset token
     const resetToken = crypto.randomBytes(20).toString('hex');
     user.resetToken = resetToken;
     user.resetTokenExpiration = Date.now() + 3600000; // 1 hour
     await user.save();
 
-    // Send a reset email
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 587,
@@ -90,31 +97,27 @@ router.post('/register', async (req, res) => {
         return res.status(400).json({ message: 'Password required' });
     }
 
-    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
         return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Generate a confirmation token
     const confirmationToken = crypto.randomBytes(20).toString('hex');
+    const confirmationTokenExpiration = Date.now() + 3600000 * 24;
 
-    // Create a new user
     const newUser = new User({
         firstName,
         lastName,
         email,
         password: hashedPassword,
         confirmationToken,
+        confirmationTokenExpiration,
     });
 
-    // Save the user to the database
     await newUser.save();
 
-    // Send a confirmation email
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 587,
@@ -148,7 +151,6 @@ router.post('/register', async (req, res) => {
 router.get('/reset-password/:resetToken', async (req, res) => {
   const { resetToken } = req.params;
 
-  // Find the user with the given reset token
   const user = await User.findOne({ resetToken });
   if (!user) {
       return res.status(404).send('User not found');
@@ -156,7 +158,6 @@ router.get('/reset-password/:resetToken', async (req, res) => {
       return res.status(400).send('Reset token expired');
   }
 
-  // Render the reset password page
   res.render('reset-password', { resetToken });
 });
 
@@ -164,7 +165,6 @@ router.post('/reset-password/:resetToken', async (req, res) => {
     const { resetToken } = req.params;
     const { password } = req.body;
 
-    // Find the user with the given reset token
     const user = await User.findOne({ resetToken });
     if (!user) {
         return res.status(404).json({ message: 'User not found' });
@@ -174,10 +174,8 @@ router.post('/reset-password/:resetToken', async (req, res) => {
         return res.status(400).json({ message: 'Please confirm your email' });
     }
 
-    // Hash the new password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Update the user's password and reset token
     user.password = hashedPassword;
     user.resetToken = undefined;
     user.resetTokenExpiration = undefined;
@@ -190,13 +188,13 @@ router.post('/reset-password/:resetToken', async (req, res) => {
 router.get('/confirm/:confirmationToken', async (req, res) => {
     const { confirmationToken } = req.params;
 
-    // Find the user with the given confirmation token
     const user = await User.findOne({ confirmationToken });
     if (!user) {
         return res.status(404).json({ message: 'User not found' });
+    } else if (user.confirmationTokenExpiration < Date.now()) {
+        return res.status(400).json({ message: 'Confirmation token expired' });
     }
 
-    // Update the user's isConfirmed field
     user.isConfirmed = true;
     user.confirmationToken = undefined;
     await user.save();

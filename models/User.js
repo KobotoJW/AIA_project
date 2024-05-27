@@ -22,12 +22,18 @@ const UserSchema = new Schema({
     confirmationToken: {
         type: String,
     },
+    confirmationTokenExpiration: {
+        type: Date,
+    },
     isConfirmed: {
         type: Boolean,
         default: false,
     },
     resetToken: {
         type: String,
+    },
+    resetTokenExpiration: {
+        type: Date,
     },
 });
 

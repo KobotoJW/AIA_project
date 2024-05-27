@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tournaments</title>
+</head>
+<body>
+    <h1>Upcoming Tournaments</h1>
+    <% if (session) { %>
+        <button onclick="location.href='/tournaments/add'">Add Tournament</button>
+    <% } %>
+    <ul>
+        <% tournaments.forEach(tournament => { %>
+            <li>
+                <h2><%= tournament.name %></h2>
+                <p>Discipline: <%= tournament.discipline %></p>
+                <p>Time: <%= tournament.time %></p>
+                <p>Location: <%= tournament.location %></p>
+                <p>Organizer: <%= tournament.organizer %></p>
+                <a href="/tournaments/<%= tournament._id %>">View Details</a>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

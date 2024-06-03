@@ -107,6 +107,9 @@ router.post('/register', async (req, res) => {
     const confirmationToken = crypto.randomBytes(20).toString('hex');
     const confirmationTokenExpiration = Date.now() + 3600000 * 24;
 
+    const licenseNumber = null;
+    const ranking = null;
+
     const newUser = new User({
         firstName,
         lastName,
@@ -114,6 +117,8 @@ router.post('/register', async (req, res) => {
         password: hashedPassword,
         confirmationToken,
         confirmationTokenExpiration,
+        licenseNumber,
+        ranking
     });
 
     await newUser.save();
@@ -143,7 +148,6 @@ router.post('/register', async (req, res) => {
         }
     });
 
-    res.json({ message: 'User registered successfully' });
     res.redirect('/users');
 
 });
@@ -200,6 +204,40 @@ router.get('/confirm/:confirmationToken', async (req, res) => {
     await user.save();
 
     res.json({ message: 'Email confirmed successfully' });
+});
+
+router.post('/add-license-and-ranking', async (req, res) => {
+    if (!req.session.userId) {
+        return res.redirect('/users');
+    }
+
+    const { licenseNumber, ranking } = req.body;
+    try {
+        var existingUser = await User.findOne({ licenseNumber });
+        if (existingUser) {
+            console.error('User with this license number already exists');
+            return res.status(400).send('User with this license number already exists');
+        }
+        existingUser = await User.findOne({ ranking });
+        if (existingUser) {
+            console.error('User with this ranking number already exists');
+            return res.status(400).send('User with this ranking number already exists');
+        }
+
+        const user = await User.findById(req.session.userId);
+        if (!user) {
+            console.error('User not found');
+            return res.status(404).send('User not found');
+        }
+        user.licenseNumber = licenseNumber;
+        user.ranking = ranking;
+        await user.save();
+
+        res.redirect(req.body.redirect);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
 });
 
 module.exports = router;

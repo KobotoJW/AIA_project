@@ -31,6 +31,18 @@ app.get('/', (req, res) => {
 //tournament routes
 app.use('/tournaments', tournamentsRoute);
 
+//logout
+app.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Server Error');
+        } else {
+            res.redirect('/users');
+        }
+    });
+});
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));

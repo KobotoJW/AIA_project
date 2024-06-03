@@ -35,6 +35,12 @@ const UserSchema = new Schema({
     resetTokenExpiration: {
         type: Date,
     },
+    licenseNumber: {
+        type: String, unique: true
+    },
+    ranking: {
+        type: Number, unique: true
+    }
 });
 
 module.exports = mongoose.model('User', UserSchema);

@@ -37,7 +37,11 @@ const TournamentSchema = new mongoose.Schema({
     rankedPlayers: {
         type: Number,
         default: 0
-    }
+    },
+    participants: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
 });
 
 module.exports = mongoose.model('Tournament', TournamentSchema);

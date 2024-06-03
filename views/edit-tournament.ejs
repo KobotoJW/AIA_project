@@ -1,0 +1,16 @@
+<form action="/tournaments/edit/<%= tournament._id %>" method="post">
+    <input type="hidden" name="_method" value="PUT">
+    <label for="deadline">Name:</label>
+    <input type="text" name="name" placeholder="Tournament Name" value="<%= tournament.name %>" required>
+    <label for="deadline">Discipline:</label>
+    <input type="text" name="discipline" placeholder="Discipline" value="<%= tournament.discipline %>" required>
+    <label for="deadline">Max Participants:</label>
+    <input type="number" name="maxParticipants" placeholder="Max Participants" value="<%= tournament.maxParticipants %>" required>
+    <label for="time">Time:</label>
+    <input type="datetime-local" id="time" name="time" value="<%= tournament.time.toISOString().substring(0, 16) %>" required>
+    <label for="deadline">Application Deadline:</label>
+    <input type="datetime-local" id="deadline" name="applicationDeadline" value="<%= tournament.applicationDeadline.toISOString().substring(0, 16) %>" required>
+    <label for="deadline">Location:</label>
+    <input type="text" name="location" placeholder="Location" value="<%= tournament.location %>" required>
+    <button type="submit">Update Tournament</button>
+</form>

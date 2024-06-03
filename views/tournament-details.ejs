@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tournament Details</title>
+</head>
+<body>
+    <h1><%= tournament.name %></h1>
+    <p>Discipline: <%= tournament.discipline %></p>
+    <p>Organizer: 
+        <% if (tournament.organizer) { %>
+            <%= tournament.organizer.firstName %> <%= tournament.organizer.lastName %>
+        <% } else { %>
+            [user deleted]
+        <% } %>
+    </p>
+    <p>Time: <%= tournament.time %></p>
+    <p>Location: <%= tournament.location %></p>
+    <p>Max Participants: <%= tournament.maxParticipants %></p>
+    <p>Application Deadline: <%= tournament.applicationDeadline %></p>
+
+    <!-- New paragraphs -->
+    <p>Sponsor Logos:</p>
+    <ul>
+        <% tournament.sponsorLogos.forEach(logo => { %>
+            <li><%= logo %></li>
+        <% }); %>
+    </ul>
+    <p>Ranked Players: <%= tournament.rankedPlayers %></p>
+    <p>Participants:</p>
+    <ul>
+        <% tournament.participants.forEach(participant => { %>
+            <li><%= participant.firstName %> <%= participant.lastName %></li>
+        <% }); %>
+    </ul>
+
+    <form action="/tournaments/add-participant/<%= tournament._id %>" method="POST" onsubmit="return confirm('Are you sure you want to join this tournament?');">
+        <input type="submit" value="Join Tournament">
+    </form>
+
+    <a href="/tournaments/edit/<%= tournament._id %>">Edit Tournament</a>
+    <button onclick="window.location.href='/tournaments'">Back</button>
+</body>
+</html>

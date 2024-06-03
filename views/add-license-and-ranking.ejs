@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add License and Ranking</title>
+</head>
+<body>
+    <h1>Add License and Ranking</h1>
+    <form action="/users/add-license-and-ranking" method="POST">
+        <label for="licenseNumber">License Number:</label><br>
+        <input type="text" id="licenseNumber" name="licenseNumber" required><br>
+        <label for="ranking">Ranking:</label><br>
+        <input type="number" id="ranking" name="ranking" required><br>
+        <input type="hidden" name="redirect" value="<%= redirect %>">
+        <input type="submit" value="Submit">
+    </form>
+    <form action="/users/add-license-and-ranking" method="post">
+
+    </form>
+</body>
+</html>

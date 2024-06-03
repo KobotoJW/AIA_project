@@ -2,23 +2,111 @@
 <html>
 <head>
     <title>Tournaments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            margin: 10px;
+            padding: 10px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+        }
+        button:hover {
+            background-color: #007B9A;
+        }
+        .logout-button {
+            background-color: #f44336; /* Red */
+        }
+        .logout-button:hover {
+            background-color: #da190b; /* Darker red */
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #007B9A;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            color: black;
+        }
+        .pagination a:hover {
+            background-color: #ccc;
+        }
+    </style>
 </head>
 <body>
     <h1>Upcoming Tournaments</h1>
     <% if (session) { %>
+        <button onclick="location.href='/logout'" class="logout-button">Logout</button>
         <button onclick="location.href='/tournaments/add'">Add Tournament</button>
     <% } %>
+
+    <form action="/tournaments" method="GET">
+        <input type="text" name="search" value="<%= search %>" placeholder="Search tournaments">
+        <button type="submit">Search</button>
+    </form>
+
     <ul>
         <% tournaments.forEach(tournament => { %>
             <li>
                 <h2><%= tournament.name %></h2>
                 <p>Discipline: <%= tournament.discipline %></p>
-                <p>Time: <%= tournament.time %></p>
+                <p>Time: <%= new Date(tournament.time).toLocaleDateString() %> <%= new Date(tournament.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %></p>
                 <p>Location: <%= tournament.location %></p>
-                <p>Organizer: <%= tournament.organizer %></p>
                 <a href="/tournaments/<%= tournament._id %>">View Details</a>
             </li>
         <% }) %>
     </ul>
+
+    <div class="pagination">
+        <% if (currentPage > 1) { %>
+            <a href="/tournaments?page=<%= currentPage - 1 %>&search=<%= search %>">Previous</a>
+        <% } %>
+
+        <% for(let i = 1; i <= totalPages; i++) { %>
+            <a href="/tournaments?page=<%= i %>&search=<%= search %>"><%= i %></a>
+        <% } %>
+
+        <% if (currentPage < totalPages) { %>
+            <a href="/tournaments?page=<%= currentPage + 1 %>&search=<%= search %>">Next</a>
+        <% } %>
+    </div>
+
+
 </body>
 </html>

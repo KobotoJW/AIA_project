@@ -55,15 +55,24 @@ router.post('/add', async (req, res) => {
     const user = req.session.user;
     const { name, discipline, time, location, maxParticipants, applicationDeadline } = req.body;
 
+    const timeDate = new Date(time);
+    const deadlineDate = new Date(applicationDeadline);
+
+    const now = new Date();
+
+    if (timeDate <= now || deadlineDate <= now) {
+        return res.status(400).send('Tournament time and application deadline must be in the future');
+    }
+
     try {
         const tournament = new Tournament({
             name,
             discipline,
             organizer: user._id,
-            time,
+            time: timeDate,
             location,
             maxParticipants,
-            applicationDeadline,
+            applicationDeadline: deadlineDate,
             sponsorLogos: [],
             rankedPlayers: 0,
             participants: [],

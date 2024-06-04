@@ -1,0 +1,347 @@
+[
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824c9e"
+      },
+      "name": "Turniej o kosz jabłek",
+      "discipline": "Koszykówka",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f37f5"
+      },
+      "time": {
+        "$date": "2024-07-15T10:00:00.000Z"
+      },
+      "location": "Warszawa, Polska",
+      "maxParticipants": 12,
+      "applicationDeadline": {
+        "$date": "2024-07-10T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824c9f"
+      },
+      "name": "Turniej o garść orzechów",
+      "discipline": "Siatkówka",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f37f6"
+      },
+      "time": {
+        "$date": "2024-08-01T14:00:00.000Z"
+      },
+      "location": "Kraków, Polska",
+      "maxParticipants": 8,
+      "applicationDeadline": {
+        "$date": "2024-07-25T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824ca0"
+      },
+      "name": "Turniej o bukiet kwiatów",
+      "discipline": "Tenis",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f37f7"
+      },
+      "time": {
+        "$date": "2024-09-10T09:00:00.000Z"
+      },
+      "location": "Łódź, Polska",
+      "maxParticipants": 16,
+      "applicationDeadline": {
+        "$date": "2024-09-05T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824ca1"
+      },
+      "name": "Turniej o worek cukru",
+      "discipline": "Piłka ręczna",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f37f8"
+      },
+      "time": {
+        "$date": "2024-10-15T13:00:00.000Z"
+      },
+      "location": "Poznań, Polska",
+      "maxParticipants": 14,
+      "applicationDeadline": {
+        "$date": "2024-10-10T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824ca2"
+      },
+      "name": "Turniej o słoik miodu",
+      "discipline": "Badminton",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f37f9"
+      },
+      "time": {
+        "$date": "2024-11-20T11:00:00.000Z"
+      },
+      "location": "Gdańsk, Polska",
+      "maxParticipants": 18,
+      "applicationDeadline": {
+        "$date": "2024-11-15T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824ca3"
+      },
+      "name": "Turniej o pęczek marchewek",
+      "discipline": "Ping Pong",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f37fa"
+      },
+      "time": {
+        "$date": "2024-12-05T16:00:00.000Z"
+      },
+      "location": "Szczecin, Polska",
+      "maxParticipants": 20,
+      "applicationDeadline": {
+        "$date": "2024-12-01T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824ca4"
+      },
+      "name": "Turniej o kosz gruszek",
+      "discipline": "Szachy",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f37fb"
+      },
+      "time": {
+        "$date": "2024-07-30T09:00:00.000Z"
+      },
+      "location": "Bydgoszcz, Polska",
+      "maxParticipants": 32,
+      "applicationDeadline": {
+        "$date": "2024-07-25T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824ca5"
+      },
+      "name": "Turniej o michę truskawek",
+      "discipline": "Rugby",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f37fc"
+      },
+      "time": {
+        "$date": "2024-08-15T13:00:00.000Z"
+      },
+      "location": "Katowice, Polska",
+      "maxParticipants": 24,
+      "applicationDeadline": {
+        "$date": "2024-08-10T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824ca6"
+      },
+      "name": "Turniej o beczkę kapusty",
+      "discipline": "Lekkoatletyka",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f37fd"
+      },
+      "time": {
+        "$date": "2024-09-01T11:00:00.000Z"
+      },
+      "location": "Lublin, Polska",
+      "maxParticipants": 30,
+      "applicationDeadline": {
+        "$date": "2024-08-25T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824ca7"
+      },
+      "name": "Turniej o worek ryżu",
+      "discipline": "Biegi",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f37fe"
+      },
+      "time": {
+        "$date": "2024-10-10T07:00:00.000Z"
+      },
+      "location": "Wrocław, Polska",
+      "maxParticipants": 50,
+      "applicationDeadline": {
+        "$date": "2024-10-05T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824ca8"
+      },
+      "name": "Turniej o bochenek chleba",
+      "discipline": "Łucznictwo",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f37ff"
+      },
+      "time": {
+        "$date": "2024-06-25T14:00:00.000Z"
+      },
+      "location": "Gdynia, Polska",
+      "maxParticipants": 15,
+      "applicationDeadline": {
+        "$date": "2024-06-20T22:00:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824ca9"
+      },
+      "name": "Turniej o butlę wody",
+      "discipline": "Wspinaczka",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f3800"
+      },
+      "time": {
+        "$date": "2024-07-05T10:00:00.000Z"
+      },
+      "location": "Toruń, Polska",
+      "maxParticipants": 10,
+      "applicationDeadline": {
+        "$date": "2024-06-30T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824caa"
+      },
+      "name": "Turniej o skrzynkę piwa",
+      "discipline": "Golf",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f3801"
+      },
+      "time": {
+        "$date": "2024-08-20T09:00:00.000Z"
+      },
+      "location": "Opole, Polska",
+      "maxParticipants": 20,
+      "applicationDeadline": {
+        "$date": "2024-08-15T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824cab"
+      },
+      "name": "Turniej o pudełko czekoladek",
+      "discipline": "Hokej",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f3802"
+      },
+      "time": {
+        "$date": "2024-09-25T14:00:00.000Z"
+      },
+      "location": "Rzeszów, Polska",
+      "maxParticipants": 12,
+      "applicationDeadline": {
+        "$date": "2024-09-20T22:00:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "665ea20d3de87d1f53824cac"
+      },
+      "name": "Turniej o karton mleka",
+      "discipline": "Kolarstwo",
+      "organizer": {
+        "$oid": "665e2ceb4355a7949f0f3803"
+      },
+      "time": {
+        "$date": "2024-10-15T11:00:00.000Z"
+      },
+      "location": "Zakopane, Polska",
+      "maxParticipants": 40,
+      "applicationDeadline": {
+        "$date": "2024-10-10T23:59:00.000Z"
+      },
+      "sponsorLogos": [],
+      "rankedPlayers": 0,
+      "participants": [],
+      "ladder": [],
+      "__v": 0
+    }
+  ]

@@ -41,24 +41,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-const seedTournament = async (tournamentId) => {
-    try {
-        const tournament = await Tournament.findById(tournamentId);
-        if (!tournament) {
-            console.error('Tournament not found');
-            return;
-        }
-
-        const participants = await User.find({ _id: { $in: tournament.participants } }).sort({ ranking: -1 });
-
-        tournament.ladder = participants.map(participant => participant._id);
-
-        await tournament.save();
-    } catch (err) {
-        console.error(err);
-    }
-};
-
 router.get('/add', (req, res) => {
     if (!req.session.userId) {
         return res.redirect('/users');
@@ -81,18 +63,14 @@ router.post('/add', async (req, res) => {
             time,
             location,
             maxParticipants,
-            applicationDeadline
+            applicationDeadline,
+            sponsorLogos: [],
+            rankedPlayers: 0,
+            participants: [],
+            ladder: []
         });
 
         await tournament.save();
-
-        const deadlineDate = new Date(applicationDeadline);
-        const now = new Date();
-        const delay = deadlineDate.getTime() - now.getTime();
-        if (delay > 0) {
-            setTimeout(() => seedTournament(tournament._id), delay);
-        }
-
         res.redirect('/tournaments');
     } catch (err) {
         console.error(err);
@@ -188,7 +166,8 @@ router.post('/add-participant/:id', async (req, res) => {
         }
 
         await Tournament.findByIdAndUpdate(req.params.id, {
-            $push: { participants: req.session.userId }
+            $push: { participants: req.session.userId },
+            $inc: { rankedPlayers: 1 }
         });
 
         res.redirect(`/tournaments/${req.params.id}`);

@@ -60,7 +60,7 @@ router.post('/forgot-password', async (req, res) => {
       port: 587,
       auth: {
         user: 'smaple.mail.to.delete@gmail.com',
-        pass: 'qfmk dbhk woob mmzh',
+        pass: 'SECRET',
       },
   });
 
